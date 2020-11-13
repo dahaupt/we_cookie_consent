@@ -18,7 +18,7 @@
 
 	<f:section name="FooterAssets">
 		<f:spaceless>
-			<script type="text/javascript" src="{f:uri.resource(path: 'JavaScript/Controller/ConsentController.js')}"></script>
+			<script type="text/javascript" src="{f:uri.resource(path: 'JavaScript/Dist/ConsentApp.js')}"></script>
 			<script type="text/javascript">var klaroConfig = {f:format.htmlentitiesDecode(value: '{klaroConfig -> we:format.json()}')}</script>
 			<f:for each="{services}" as="service">
 				<f:render partial="Service/{service.provider}" section="Footer" arguments="{service:service}" optional="1"/>

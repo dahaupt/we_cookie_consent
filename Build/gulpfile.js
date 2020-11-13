@@ -1,4 +1,7 @@
 const gulp = require('gulp');
+const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
+const minify = require("gulp-babel-minify");
 
 gulp.task('js', () => {
     return gulp.src([
@@ -7,4 +10,16 @@ gulp.task('js', () => {
         .pipe(gulp.dest('../Resources/Public/Library/klaro'));
 });
 
-gulp.task('build', gulp.parallel('js'));
+gulp.task('babel', () => {
+    return gulp.src('../Resources/Public/JavaScript/Src/ConsentApp.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+            presets: ['@babel/preset-env'],
+            comments: false
+        }))
+        .pipe(minify())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('../Resources/Public/JavaScript/Dist/'));
+});
+
+gulp.task('build', gulp.parallel('babel', 'js'));

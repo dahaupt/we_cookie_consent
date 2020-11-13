@@ -1,5 +1,4 @@
-// Consent class
-let ConsentApp = new function ConsentController() {
+const ConsentApp = new function () {
     //-- global variables ---
     window.dataLayer = window.dataLayer || [];
 
@@ -74,10 +73,10 @@ let ConsentApp = new function ConsentController() {
     };
 
     //--- constructor ---
-    (function contruct() {
+    (function construct() {
         $(document).ready(function () {
-            //Listener for the button on the privacy page, to edit the consent
-            $(document).on('click', '.js-showConsentModal', function (event) {
+            // listener for the button on the privacy page to edit the consent
+            $('.js-showConsentModal').on('click', function (event) {
                 event.preventDefault();
                 klaro.show();
             });
@@ -88,9 +87,8 @@ let ConsentApp = new function ConsentController() {
                 ConsentApp.cloneButton();
             });
 
-
             //Only execute, if no decision is made yet (first visit).
-            if (klaro.getManager().confirmed == false) {
+            if (klaro.getManager().confirmed === false) {
                 //Workaround for issue https://github.com/KIProtect/klaro/issues/138
                 $(document).on('click', '.cookie-notice .cm-btn-success', function (event) {
                     klaroConfig.apps.forEach(function (element, index) {
