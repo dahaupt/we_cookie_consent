@@ -170,6 +170,9 @@ class Service extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $cookies = null;
 
+    /** @var string */
+    protected $optInText;
+
     /**
      * __construct
      */
@@ -699,5 +702,21 @@ class Service extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setGtmVariableName($gtmVariableName)
     {
         $this->gtmVariableName = $gtmVariableName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOptInText(): string
+    {
+        return $this->optInText;
+    }
+
+    /**
+     * @param string $optInText
+     */
+    public function setOptInText(string $optInText): void
+    {
+        $this->optInText = $optInText;
     }
 }

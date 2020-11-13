@@ -78,6 +78,12 @@
 			<trans-unit id="klaro.poweredBy">
 				<source>Provided by websedit</source>
 			</trans-unit>
+			<trans-unit id="klaro.activate">
+				<source>Activate</source>
+			</trans-unit>
+			<trans-unit id="klaro.activateAlways">
+				<source>Always activate</source>
+			</trans-unit>
 
 			<trans-unit id="list.button.openConsent">
 				<source>Customize privacy settings</source>

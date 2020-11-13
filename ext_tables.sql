@@ -22,9 +22,10 @@ CREATE TABLE tx_wecookieconsent_domain_model_service (
 	gtm_variable_title varchar(255) DEFAULT '' NOT NULL,
 	gtm_variable_name varchar(255) DEFAULT '' NOT NULL,
 	cookies int(11) unsigned DEFAULT '0' NOT NULL,
+	opt_in_text text DEFAULT '' NOT NULL,
 
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	#### TYPO3 7/8LTS compatibility ###
 	uid int(11) unsigned NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -69,7 +70,7 @@ CREATE TABLE tx_wecookieconsent_domain_model_cookie (
 	max_age varchar(255) DEFAULT '' NOT NULL,
 
 	service int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	#### TYPO3 7/8LTS compatibility ###
 	uid int(11) unsigned NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,

@@ -78,6 +78,12 @@
 			<trans-unit id="klaro.poweredBy">
 				<target>Bereitgestellt von websedit</target>
 			</trans-unit>
+			<trans-unit id="klaro.activate">
+				<target>Aktivieren</target>
+			</trans-unit>
+			<trans-unit id="klaro.activateAlways">
+				<target>Immer aktivieren</target>
+			</trans-unit>
 
 			<trans-unit id="list.button.openConsent">
 				<target>Datenschutzeinstellungen anpassen</target>

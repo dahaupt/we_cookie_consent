@@ -72,6 +72,52 @@ const ConsentApp = new function () {
         counter++;
     };
 
+    /**
+     * Evaluates the state of the consent and initiates all further opt-in modifications.
+     *
+     * @param state
+     * @param app
+     * @param $element
+     * @param $parentElement
+     */
+    this.checkConsentOptIn = function (state, app, $element, $parentElement) {
+        if (!state) {
+            $element.hide();
+            $parentElement.prepend(this.createConsentOptInContainer(app));
+
+            $('button[data-optin="' + app.name + '"]').click(function () {
+                klaro.getManager().updateConsent(app.name, true);
+
+                if ($('input[data-optin-always="' + app.name + '"]').is(':checked')) {
+                    klaro.getManager().saveAndApplyConsents();
+                } else {
+                    klaro.getManager().applyConsents();
+                }
+            });
+        } else {
+            $parentElement.find('.service-opt-in').remove();
+            $element.show();
+        }
+    };
+
+    /**
+     * Creates a service opt-in container based on the provided app.
+     *
+     * @param app
+     * @returns {string}
+     */
+    this.createConsentOptInContainer = function (app) {
+        return `<div data-service="${app.name}" class="service-opt-in">
+            <p class="lead">${app.title}</p>
+            ${app.optInText}
+            <button class="btn btn-primary btn-sm" data-optin="${app.name}">${klaroConfig.translations.en.activate}</button>
+              <div class="form-check">
+                <input id="optin-always-${app.name}" type="checkbox" class="form-check-input" data-optin-always="${app.name}" checked>
+                <label for="optin-always-${app.name}" class="form-check-label">${klaroConfig.translations.en.activateAlways}</label>
+            </div>
+          </div>`;
+    };
+
     //--- constructor ---
     (function construct() {
         $(document).ready(function () {

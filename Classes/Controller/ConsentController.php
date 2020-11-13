@@ -87,7 +87,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         if (!$this->view instanceof \TYPO3Fluid\Fluid\View\TemplateView) {
             return;
         }
-		
+
 		$services = $this->serviceRepository->findAll();
         $klaroConfig = $this->klaroConfigBuild($services);
 
@@ -127,7 +127,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $privacyPage = $this->settings['klaro']['privacyPolicy'];
         }
-        
+
         if (is_numeric($this->settings['klaro']['poweredBy'])) {
             $poweredByPage = $this->uriBuilder
                 ->reset()
@@ -189,7 +189,9 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     'acceptSelected' => LocalizationUtility::translate('klaro.save', 'we_cookie_consent'),
                     'decline' => LocalizationUtility::translate('klaro.decline', 'we_cookie_consent'),
                     'close' => LocalizationUtility::translate('klaro.close', 'we_cookie_consent'),
-                    'poweredBy' => LocalizationUtility::translate('klaro.poweredBy', 'we_cookie_consent')
+                    'poweredBy' => LocalizationUtility::translate('klaro.poweredBy', 'we_cookie_consent'),
+                    'activate' => LocalizationUtility::translate('klaro.activate', 'we_cookie_consent'),
+                    'activateAlways' => LocalizationUtility::translate('klaro.activateAlways', 'we_cookie_consent')
                 ]
             ],
             'apps' => []

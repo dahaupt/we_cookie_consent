@@ -26,12 +26,12 @@ return [
         'showRecordFieldList' => 'provider, name, title, description, purpose, state, required, preselected, opt_out, only_once, snippet, callback, domain, api_key, gtm_tag_title, gtm_trigger_title, gtm_trigger_name, gtm_variable_title, gtm_variable_name, cookies, sys_language_uid, l10n_parent, l10n_diffsource, hidden',
     ],
     'types' => [
-        '1' => ['showitem' => '--palette--;;service_provider, title, description,
-                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.cookies.label, cookies, 
-                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.settings.label, state, required, preselected, opt_out, only_once, 
-                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.identification.label, domain, api_key, 
-                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.dev.label, snippet, callback, 
-                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.gtm.label, gtm_tag_title, --palette--;;gtm_trigger, --palette--;;gtm_variable,  
+        '1' => ['showitem' => '--palette--;;service_provider, title, description, opt_in_text,
+                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.cookies.label, cookies,
+                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.settings.label, state, required, preselected, opt_out, only_once,
+                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.identification.label, domain, api_key,
+                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.dev.label, snippet, callback,
+                --div--;LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.tab.gtm.label, gtm_tag_title, --palette--;;gtm_trigger, --palette--;;gtm_variable,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, hidden, sys_language_uid, l10n_parent, l10n_diffsource, starttime, endtime
             '],
     ],
@@ -434,6 +434,18 @@ return [
                         'localize' => true,
                     ]
                 ],
+            ],
+        ],
+        'opt_in_text' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.opt_in_text.label',
+            'description' => 'LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_db.xlf:tx_wecookieconsent_domain_model_service.opt_in_text.description',
+            'config' => [
+                'type' => 'text',
+                'enableRichtext' => true,
+                'cols' => 40,
+                'rows' => 5,
+                'eval' => 'trim',
             ],
         ],
     ],

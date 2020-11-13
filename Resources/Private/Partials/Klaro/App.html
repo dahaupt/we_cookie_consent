@@ -18,7 +18,9 @@
         cookies: [<f:format.raw>{cookies}</f:format.raw>],
         callback: ConsentApp.consentChanged,
         ownCallback:'<f:format.raw>{service.callback}</f:format.raw>',
-        gtm:{trigger:'<f:format.raw>{service.gtmTriggerName}</f:format.raw>',variable:'<f:format.raw>{service.gtmVariableName}</f:format.raw>'}
+        gtm:{trigger:'<f:format.raw>{service.gtmTriggerName}</f:format.raw>',
+        variable:'<f:format.raw>{service.gtmVariableName}</f:format.raw>'},
+        optInText: '<f:format.html>{service.optInText}</f:format.html>'
     });
 </script>
 </html>

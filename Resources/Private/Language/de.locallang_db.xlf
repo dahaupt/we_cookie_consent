@@ -204,6 +204,12 @@
             <trans-unit id="tx_wecookieconsent_domain_model_cookie.max_age.description">
                 <target>Bspw.: 365 Tage, Session-Cookie, etc.</target>
             </trans-unit>
+			<trans-unit id="tx_wecookieconsent_domain_model_service.opt_in_text.label">
+				<target>Opt-In Text</target>
+			</trans-unit>
+			<trans-unit id="tx_wecookieconsent_domain_model_service.opt_in_text.description">
+				<target>Dieser Text wird angezeigt, wenn der Nutzung des Services noch nicht zugestimmt wurde.</target>
+			</trans-unit>
 
 
             <trans-unit id="tx_we_cookie_consent_pi1.name">

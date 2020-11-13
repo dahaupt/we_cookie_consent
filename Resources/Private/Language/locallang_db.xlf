@@ -170,6 +170,12 @@
             <trans-unit id="tx_wecookieconsent_domain_model_service.category.description">
                 <source>[Hilfestellung]</source>
             </trans-unit>
+			<trans-unit id="tx_wecookieconsent_domain_model_service.opt_in_text.label">
+				<source>Opt-In Text</source>
+			</trans-unit>
+			<trans-unit id="tx_wecookieconsent_domain_model_service.opt_in_text.description">
+				<source>This text is displayed if the usage of the service has not yet been agreed to.</source>
+			</trans-unit>
 
             <trans-unit id="tx_wecookieconsent_domain_model_cookie">
                 <source>Cookie</source>
