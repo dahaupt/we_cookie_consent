@@ -137,8 +137,8 @@ const ConsentApp = new function () {
             if (klaro.getManager().confirmed === false) {
                 //Workaround for issue https://github.com/KIProtect/klaro/issues/138
                 $(document).on('click', '.cookie-notice .cm-btn-success', function (event) {
-                    klaroConfig.apps.forEach(function (element, index) {
-                        klaroConfig.apps[index].default = klaroConfig.apps[index].defaultIfNoConsent;
+                    klaroConfig.services.forEach(function (element, index) {
+                        klaroConfig.services[index].default = klaroConfig.services[index].defaultIfNoConsent;
                     });
                     klaro.getManager().resetConsents();
                     klaro.getManager().saveAndApplyConsents();

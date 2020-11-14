@@ -196,7 +196,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     'activateAlways' => LocalizationUtility::translate('klaro.activateAlways', 'we_cookie_consent')
                 ]
             ],
-            'apps' => []
+            'services' => []
         ];
 
         foreach ($services as $service) {

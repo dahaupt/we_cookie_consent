@@ -7,7 +7,7 @@
     <f:else><we:variable name="purposes">'unknown'</we:variable></f:else>
 </f:if>
 <script type="text/javascript">
-    klaroConfig.apps.push({
+    klaroConfig.services.push({
         name: '<f:format.raw>{service.provider}-{service.uid}</f:format.raw>',
         title: '<f:format.raw>{service.title}</f:format.raw>',
         description: '<f:format.stripTags>{service.description}</f:format.stripTags>',

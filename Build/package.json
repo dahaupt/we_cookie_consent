@@ -17,7 +17,7 @@
     "gulp-babel-minify": "^0.5.1",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^3.0.0",
-    "klaro": "0.6.0"
+    "klaro": "^0.7.8"
   },
   "scripts": {
     "build": "./node_modules/.bin/gulp build"
