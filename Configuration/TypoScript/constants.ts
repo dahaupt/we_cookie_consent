@@ -39,6 +39,8 @@ plugin.tx_wecookieconsent_pi1 {
             lang = en
             # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/109; type=boolean; label=Group services into categories, allowing the user to enable or disable entire groups of services at once.
             groupByPurpose = 0
+            # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/110; type=boolean; label=Show cookie notice as modal:Show the consent notice as a modal window, forcing the user to make a consent choice before proceeding to the page.
+            noticeAsModal = 0
             # cat=plugin.tx_wecookieconsent_pi1/02_WETEMPLATE/100; type=options[Bottom=klaro we_cookie_consent,Top=klaro we_cookie_consent notice--top,Center 1=klaro we_cookie_consent notice--center,Center 2=klaro we_cookie_consent notice--center-floated]; label=Style Prefix:For Custom CSS Styling
             stylePrefix = klaro we_cookie_consent
         }

@@ -146,6 +146,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'privacyPolicy' => $privacyPage,
             'default' => $this->settings['klaro']['default'] === '1',
             'mustConsent' => $this->settings['klaro']['mustConsent'] === '1',
+            'noticeAsModal' => $this->settings['klaro']['noticeAsModal'] === '1',
             'groupByPurpose' => $this->settings['klaro']['groupByPurpose'] === '1',
             'hideDeclineAll' => $this->settings['klaro']['hideDeclineAll'] === '1',
             'hideLearnMore' => $this->settings['klaro']['hideLearnMore'] === '1',
