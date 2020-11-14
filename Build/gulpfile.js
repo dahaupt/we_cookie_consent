@@ -27,4 +27,9 @@ gulp.task('css', () => {
         .pipe(gulp.dest('../Resources/Public/Library/klaro/css'));
 });
 
-gulp.task('build', gulp.parallel('babel', 'js', 'css'));
+gulp.task('scss', () => {
+    return gulp.src('node_modules/klaro/src/scss/**/*')
+        .pipe(gulp.dest('../Resources/Public/Library/klaro/scss'));
+});
+
+gulp.task('build', gulp.parallel('babel', 'js', 'css', 'scss'));
