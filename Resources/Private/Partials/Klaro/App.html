@@ -3,7 +3,8 @@
     <we:variable name="cookies"><f:for each="{service.cookies}" as="cookie" iteration="iterator">['{cookie.title}', '/', '']<f:if condition="{iterator.isLast} != 1">, </f:if></f:for></we:variable>
 </f:if>
 <f:if condition="{service.categories}">
-    <we:variable name="purposes"><f:for each="{service.categories}" as="category" iteration="iterator">'{category.title -> f:format.case(mode: 'lower')}'<f:if condition="{iterator.isLast} != 1">, </f:if></f:for></we:variable>
+    <f:then><we:variable name="purposes"><f:for each="{service.categories}" as="category" iteration="iterator">'{category.title -> f:format.case(mode: 'lower')}'<f:if condition="{iterator.isLast} != 1">, </f:if></f:for></we:variable></f:then>
+    <f:else><we:variable name="purposes">'unknown'</we:variable></f:else>
 </f:if>
 <script type="text/javascript">
     klaroConfig.apps.push({
