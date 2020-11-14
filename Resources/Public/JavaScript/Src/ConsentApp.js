@@ -140,7 +140,7 @@ const ConsentApp = new function () {
                     klaroConfig.apps.forEach(function (element, index) {
                         klaroConfig.apps[index].default = klaroConfig.apps[index].defaultIfNoConsent;
                     });
-                    klaro.getManager().resetConsent();
+                    klaro.getManager().resetConsents();
                     klaro.getManager().saveAndApplyConsents();
 
                     $('.cookie-notice ').remove();
