@@ -82,7 +82,8 @@ page {
     525304800 < tt_content.list.20.wecookieconsent_pi1
 
     includeCSS {
-        we_cookie_consent_style = EXT:we_cookie_consent/Resources/Public/Stylesheet/style.css
+        klaro = EXT:we_cookie_consent/Resources/Public/Library/klaro/css/klaro.min.css
+        we_cookie_consent_style = EXT:we_cookie_consent/Resources/Public/Css/style.css
     }
 
     //Not compatible with the TYPO3 7 output because of the missing renderAssetsForRequest function. Can be reactivited if support for TYPO3 7 is dropped

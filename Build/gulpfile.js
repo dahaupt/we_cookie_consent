@@ -7,7 +7,7 @@ gulp.task('js', () => {
     return gulp.src([
         'node_modules/klaro/dist/klaro.js',
         'node_modules/klaro/dist/klaro-no-css.js'])
-        .pipe(gulp.dest('../Resources/Public/Library/klaro'));
+        .pipe(gulp.dest('../Resources/Public/Library/klaro/js'));
 });
 
 gulp.task('babel', () => {
@@ -22,4 +22,9 @@ gulp.task('babel', () => {
         .pipe(gulp.dest('../Resources/Public/JavaScript/Dist/'));
 });
 
-gulp.task('build', gulp.parallel('babel', 'js'));
+gulp.task('css', () => {
+    return gulp.src('node_modules/klaro/dist/*.css')
+        .pipe(gulp.dest('../Resources/Public/Library/klaro/css'));
+});
+
+gulp.task('build', gulp.parallel('babel', 'js', 'css'));
