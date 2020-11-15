@@ -85,7 +85,7 @@ page {
 
     includeCSS {
         klaro = EXT:we_cookie_consent/Resources/Public/Library/klaro/css/klaro.min.css
-        we_cookie_consent_style = EXT:we_cookie_consent/Resources/Public/Css/style.css
+        we_cookie_consent_style = EXT:we_cookie_consent/Resources/Public/Css/style.min.css
     }
 
     //Not compatible with the TYPO3 7 output because of the missing renderAssetsForRequest function. Can be reactivited if support for TYPO3 7 is dropped
