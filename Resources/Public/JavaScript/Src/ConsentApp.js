@@ -121,12 +121,6 @@ const ConsentApp = new function () {
     //--- constructor ---
     (function construct() {
         $(document).ready(function () {
-            // listener for the button on the privacy page to edit the consent
-            $('.js-showConsentModal').on('click', function (event) {
-                event.preventDefault();
-                klaro.show();
-            });
-
             //Workaround if modal ist closed without save
             $(document).on('click', 'div.cm-bg, button.hide', function (event) {
                 event.preventDefault();
