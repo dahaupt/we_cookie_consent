@@ -138,6 +138,8 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $poweredByPage = $this->settings['klaro']['poweredBy'];
         }
 
+        $languageCode = $GLOBALS['TYPO3_REQUEST']->getAttribute('language')->getTwoLetterIsoCode();
+
         $klaroConfig = [
             'elementID' => $this->settings['klaro']['elementID'],
             'storageMethod' => $this->settings['klaro']['storageMethod'],
@@ -151,10 +153,9 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'groupByPurpose' => $this->settings['klaro']['groupByPurpose'] === '1',
             'hideDeclineAll' => $this->settings['klaro']['hideDeclineAll'] === '1',
             'hideLearnMore' => $this->settings['klaro']['hideLearnMore'] === '1',
-            'lang' => $this->settings['klaro']['lang'],
             'poweredBy' => $poweredByPage,
             'translations' => [
-                'en' => [
+                $languageCode => [
                     'consentModal' => [
                         'title' => LocalizationUtility::translate('klaro.consentModal.title', 'we_cookie_consent'),
                         'description' => LocalizationUtility::translate('klaro.consentModal.description', 'we_cookie_consent'),
@@ -202,7 +203,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         foreach ($services as $service) {
             foreach ($service->getCategories() as $category) {
-                $klaroConfig['translations']['en']['purposes'][strtolower($category->getTitle())] = $category->getTitle();
+                $klaroConfig['translations'][$languageCode]['purposes'][strtolower($category->getTitle())] = $category->getTitle();
             }
         }
 

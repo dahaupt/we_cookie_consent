@@ -45,7 +45,6 @@ plugin.tx_wecookieconsent_pi1 {
             hideDeclineAll = {$plugin.tx_wecookieconsent_pi1.settings.klaro.hideDeclineAll}
             hideLearnMore = {$plugin.tx_wecookieconsent_pi1.settings.klaro.hideLearnMore}
             poweredBy = {$plugin.tx_wecookieconsent_pi1.settings.klaro.poweredBy}
-            lang = {$plugin.tx_wecookieconsent_pi1.settings.klaro.lang}
             groupByPurpose = {$plugin.tx_wecookieconsent_pi1.settings.klaro.groupByPurpose}
             noticeAsModal = {$plugin.tx_wecookieconsent_pi1.settings.klaro.noticeAsModal}
             stylePrefix = {$plugin.tx_wecookieconsent_pi1.settings.klaro.stylePrefix}

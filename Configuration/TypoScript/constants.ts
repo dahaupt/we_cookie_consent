@@ -35,8 +35,6 @@ plugin.tx_wecookieconsent_pi1 {
             hideLearnMore = 0
             # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/107; type=string; label=Powered by:UID of the powered by page or absolute/relative URL. Link shown in consent window
             poweredBy = https://consent.websedit.de
-            # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/108; type=string; label=Language (obsolete):Language selection is based on the page languages. Will be removed in future versions. For language customizations see chapter 6.2 in documentation.
-            lang = en
             # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/109; type=boolean; label=Group services into categories, allowing the user to enable or disable entire groups of services at once.
             groupByPurpose = 0
             # cat=plugin.tx_wecookieconsent_pi1/03_WEOTHER/110; type=boolean; label=Show cookie notice as modal:Show the consent notice as a modal window, forcing the user to make a consent choice before proceeding to the page.

@@ -35,7 +35,7 @@ const ConsentApp = new function () {
      * @param $parentElement
      */
     this.checkConsentOptIn = function (consent, service, $element, $parentElement) {
-        if (!consent) {
+        if (!consent && $element.length) {
             $element.hide();
             $parentElement.prepend(this.createConsentOptInContainer(service));
 
@@ -61,13 +61,15 @@ const ConsentApp = new function () {
      * @returns {string}
      */
     this.createConsentOptInContainer = function (service) {
+        const translations = klaroConfig.translations[klaro.language()];
+
         return `<div data-service="${service.name}" class="service-opt-in">
             <p class="lead">${service.title}</p>
             ${service.optInText}
-            <button class="btn btn-primary btn-sm" data-optin="${service.name}">${klaroConfig.translations.en.activate}</button>
+            <button class="btn btn-primary btn-sm" data-optin="${service.name}">${translations.activate}</button>
               <div class="form-check">
                 <input id="optin-always-${service.name}" type="checkbox" class="form-check-input" data-optin-always="${service.name}" checked>
-                <label for="optin-always-${service.name}" class="form-check-label">${klaroConfig.translations.en.activateAlways}</label>
+                <label for="optin-always-${service.name}" class="form-check-label">${translations.activateAlways}</label>
             </div>
           </div>`;
     };
