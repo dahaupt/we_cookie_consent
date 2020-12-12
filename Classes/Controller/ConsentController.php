@@ -141,6 +141,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $klaroConfig = [
             'elementID' => $this->settings['klaro']['elementID'],
             'storageMethod' => $this->settings['klaro']['storageMethod'],
+            'stylePrefix' => $this->settings['klaro']['stylePrefix'],
             'cookieName' => $this->settings['klaro']['cookieName'],
             'cookieExpiresAfterDays' => $this->settings['klaro']['cookieExpiresAfterDays'],
             'privacyPolicy' => $privacyPage,
