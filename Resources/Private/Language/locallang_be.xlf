@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2020-12-12T20:52:34Z" product-name="we_cookie_consent">
+		<header/>
+		<body>
+			<trans-unit id="extmng.showBackendModule">
+				<source>Enable backend module</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

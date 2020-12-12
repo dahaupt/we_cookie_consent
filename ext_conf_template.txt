@@ -1,0 +1,4 @@
+# Backend module
+
+# cat=backend/enable/10; type=boolean; label=LLL:EXT:we_cookie_consent/Resources/Private/Language/locallang_be.xlf:extmng.showBackendModule
+showBackendModule = 1
