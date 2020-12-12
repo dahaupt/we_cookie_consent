@@ -48,15 +48,6 @@ plugin.tx_wecookieconsent_pi1 {
 }
 
 module.tx_wecookieconsent_mod1 {
-    view {
-        # cat=module.tx_wecookieconsent_mod1/file; type=string; label=Path to template root (BE)
-        templateRootPath = EXT:we_cookie_consent/Resources/Private/Backend/Templates/
-        # cat=module.tx_wecookieconsent_mod1/file; type=string; label=Path to template partials (BE)
-        partialRootPath = EXT:we_cookie_consent/Resources/Private/Backend/Partials/
-        # cat=module.tx_wecookieconsent_mod1/file; type=string; label=Path to template layouts (BE)
-        layoutRootPath = EXT:we_cookie_consent/Resources/Private/Backend/Layouts/
-    }
-
     persistence {
         # cat=module.tx_wecookieconsent_mod1//a; type=string; label=Default storage PID
         storagePid =

@@ -57,26 +57,6 @@ module.tx_wecookieconsent_web_wecookieconsentmod1 {
     persistence {
         storagePid = {$module.tx_wecookieconsent_mod1.persistence.storagePid}
     }
-
-    view {
-        templateRootPaths {
-            0 = EXT:we_cookie_consent/Resources/Private/Backend/Templates/
-            10 = EXT:we_template/Resources/Private/Templates/Backend/we_cookie_consent/
-            20 = {$module.tx_wecookieconsent_mod1.view.templateRootPath}
-        }
-
-        partialRootPaths {
-            0 = EXT:we_cookie_consent/Resources/Private/Backend/Partials/
-            10 = EXT:we_template/Resources/Private/Partials/Backend/we_cookie_consent/
-            20 = {$module.tx_wecookieconsent_mod1.view.partialRootPath}
-        }
-
-        layoutRootPaths {
-            0 = EXT:we_cookie_consent/Resources/Private/Backend/Layouts/
-            10 = EXT:we_template/Resources/Private/Layouts/Backend/we_cookie_consent/
-            20 = {$module.tx_wecookieconsent_mod1.view.layoutRootPath}
-        }
-    }
 }
 
 page {
