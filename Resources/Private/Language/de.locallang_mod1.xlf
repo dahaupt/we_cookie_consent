@@ -26,7 +26,7 @@
 				<target>Variable Name</target>
 			</trans-unit>
 			<trans-unit id="no_google_tag_manager_services">
-				<target>Es befinden sich keine Google Tag Manager Services in diesem Sysordner! Bitte wäheln Sie im Seitenbaum den richtigen Ordner.</target>
+				<target>Es befinden sich keine Google Tag Manager Services in diesem Sysordner! Bitte wählen Sie im Seitenbaum den richtigen Ordner.</target>
 			</trans-unit>
 			<trans-unit id="download_json_all">
 				<target>Download All</target>
