@@ -146,53 +146,33 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'stylePrefix' => $this->settings['klaro']['stylePrefix'],
             'cookieName' => $this->settings['klaro']['cookieName'],
             'cookieExpiresAfterDays' => $this->settings['klaro']['cookieExpiresAfterDays'],
-            'privacyPolicy' => $privacyPage,
             'default' => $this->settings['klaro']['default'] === '1',
             'mustConsent' => $this->settings['klaro']['mustConsent'] === '1',
             'noticeAsModal' => $this->settings['klaro']['noticeAsModal'] === '1',
             'groupByPurpose' => $this->settings['klaro']['groupByPurpose'] === '1',
             'hideDeclineAll' => $this->settings['klaro']['hideDeclineAll'] === '1',
             'hideLearnMore' => $this->settings['klaro']['hideLearnMore'] === '1',
+            'htmlTexts' => true,
             'poweredBy' => $poweredByPage,
             'translations' => [
                 $languageCode => [
+                    'privacyPolicyUrl' => $privacyPage,
+                    'privacyPolicy' => [
+                        'name' => LocalizationUtility::translate('klaro.privacyPolicy.name', 'we_cookie_consent'),
+                        'text' => LocalizationUtility::translate('klaro.privacyPolicy.text', 'we_cookie_consent')
+                    ],
                     'consentModal' => [
                         'title' => LocalizationUtility::translate('klaro.consentModal.title', 'we_cookie_consent'),
                         'description' => LocalizationUtility::translate('klaro.consentModal.description', 'we_cookie_consent'),
-                        'privacyPolicy' => [
-                            'text' => LocalizationUtility::translate('klaro.consentModal.privacyPolicy.text', 'we_cookie_consent'),
-                            'name' => LocalizationUtility::translate('klaro.consentModal.privacyPolicy.name', 'we_cookie_consent')
-                        ]
                     ],
                     'consentNotice' => [
-                        'description' => LocalizationUtility::translate('klaro.consentNotice.description', 'we_cookie_consent'),
-                        'changeDescription' => LocalizationUtility::translate('klaro.consentNotice.changeDescription', 'we_cookie_consent'),
+                        'description' => LocalizationUtility::translate('klaro.consentNotice.description', 'we_cookie_consent', [$privacyPage]),
                         'learnMore' => LocalizationUtility::translate('klaro.consentNotice.learnMore', 'we_cookie_consent')
-                    ],
-                    'app' => [
-                        'disableAll' => [
-                            'title' => LocalizationUtility::translate('klaro.app.disableAll.title', 'we_cookie_consent'),
-                            'description' => LocalizationUtility::translate('klaro.app.disableAll.description', 'we_cookie_consent')
-                        ],
-                        'optOut' => [
-                            'title' => LocalizationUtility::translate('klaro.app.optOut.title', 'we_cookie_consent'),
-                            'description' => LocalizationUtility::translate('klaro.app.optOut.description', 'we_cookie_consent')
-                        ],
-                        'required' => [
-                            'title' => LocalizationUtility::translate('klaro.app.required.title', 'we_cookie_consent'),
-                            'description' => LocalizationUtility::translate('klaro.app.required.description', 'we_cookie_consent')
-                        ],
-                        'purpose' => LocalizationUtility::translate('klaro.app.purpose', 'we_cookie_consent'),
-                        'purposes' => LocalizationUtility::translate('klaro.app.purposes', 'we_cookie_consent')
-                    ],
-                    'purposes' => [
-                        'unknown' => LocalizationUtility::translate('klaro.purposes.unknown', 'we_cookie_consent')
                     ],
                     'ok' => LocalizationUtility::translate('klaro.ok', 'we_cookie_consent'),
                     'save' => LocalizationUtility::translate('klaro.save', 'we_cookie_consent'),
                     'acceptSelected' => LocalizationUtility::translate('klaro.save', 'we_cookie_consent'),
                     'decline' => LocalizationUtility::translate('klaro.decline', 'we_cookie_consent'),
-                    'close' => LocalizationUtility::translate('klaro.close', 'we_cookie_consent'),
                     'poweredBy' => LocalizationUtility::translate('klaro.poweredBy', 'we_cookie_consent'),
                     'activate' => LocalizationUtility::translate('klaro.activate', 'we_cookie_consent'),
                     'activateAlways' => LocalizationUtility::translate('klaro.activateAlways', 'we_cookie_consent')
