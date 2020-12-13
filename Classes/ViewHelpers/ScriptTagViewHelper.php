@@ -2,6 +2,8 @@
 
 namespace Websedit\WeCookieConsent\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 class ScriptTagViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
@@ -15,7 +17,8 @@ class ScriptTagViewHelper extends AbstractViewHelper
         $this->registerArgument('name', 'string', 'The snippets name to active', true);
     }
 
-	public function render() {
+    public function render()
+    {
         $snippet = $this->arguments['snippet'];
         $name = $this->arguments['name'];
 

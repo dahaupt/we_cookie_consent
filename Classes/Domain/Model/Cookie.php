@@ -55,7 +55,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string title
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -66,7 +66,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $title
      * @return void
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -76,7 +76,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string description
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -87,7 +87,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $description
      * @return void
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -97,7 +97,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string maxAge
      */
-    public function getMaxAge()
+    public function getMaxAge(): string
     {
         return $this->maxAge;
     }
@@ -108,7 +108,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $maxAge
      * @return void
      */
-    public function setMaxAge($maxAge)
+    public function setMaxAge(string $maxAge)
     {
         $this->maxAge = $maxAge;
     }
@@ -118,7 +118,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $regex
      */
-    public function getRegex()
+    public function getRegex(): string
     {
         return $this->regex;
     }
@@ -129,7 +129,7 @@ class Cookie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $regex
      * @return void
      */
-    public function setRegex($regex)
+    public function setRegex(string $regex)
     {
         $this->regex = $regex;
     }

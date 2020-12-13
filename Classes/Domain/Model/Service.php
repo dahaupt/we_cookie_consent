@@ -199,7 +199,7 @@ class Service extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getCategories()
+    public function getCategories(): ?\TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->categories;
     }
@@ -217,7 +217,7 @@ class Service extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string provider
      */
-    public function getProvider()
+    public function getProvider(): string
     {
         return $this->provider;
     }

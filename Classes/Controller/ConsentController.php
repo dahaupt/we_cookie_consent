@@ -2,7 +2,12 @@
 
 namespace Websedit\WeCookieConsent\Controller;
 
+use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Websedit\WeCookieConsent\Domain\Model\Cookie;
+use Websedit\WeCookieConsent\Domain\Model\Service;
 
 /***
  *
@@ -40,28 +45,24 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Generate JSON data for the consent Modal
      *
-     * @param Websedit\WeCookieConsent\Domain\Model\Service
      * @return void
      */
     public function consentAction()
     {
         $services = $this->serviceRepository->findAll();
 
-        //These two lines are only required for TYPO3 7 backwards compatibility. in TYPO3 >=8 renderAssetsForRequest is used
-        $klaroConfig = $this->klaroConfigBuild($services);
-        $typo3Version = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
+        /** @var PageRenderer $pageRenderer */
+        $pageRenderer = $this->objectManager->get(\TYPO3\CMS\Core\Page\PageRenderer::class);
 
-        $this->view->assignMultiple([
-            'services' => $services,
-            'klaroConfig' => $klaroConfig,
-            'typo3Version' => $typo3Version
-        ]);
+        $pageRenderer->addJsFooterInlineCode(
+            'klaroConfig',
+            'var klaroConfig = ' . $this->klaroConfigBuild($services) . ';',
+        );
     }
 
     /**
      * Show used cookies at the data privacy page
      *
-     * @param Websedit\WeCookieConsent\Domain\Model\Service
      * @return void
      */
     public function listAction()
@@ -88,15 +89,15 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             return;
         }
 
-		$services = $this->serviceRepository->findAll();
-        $klaroConfig = $this->klaroConfigBuild($services);
+        $services = $this->serviceRepository->findAll();
 
+        /** @var PageRenderer $pageRenderer */
         $pageRenderer = $this->objectManager->get(\TYPO3\CMS\Core\Page\PageRenderer::class);
+
         $variables = [
             'request' => $request,
             'arguments' => $this->arguments,
             'services' => $services,
-            'klaroConfig' => $klaroConfig
         ];
 
         $headerAssets = $this->view->renderSection('HeaderAssets', $variables, true);
@@ -113,16 +114,15 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Build the klaro config object used in frontend
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $services
-     * @return array
+     * @param QueryResultInterface $services
+     * @return string
      */
-    private function klaroConfigBuild(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $services)
+    private function klaroConfigBuild(QueryResultInterface $services): string
     {
         if (is_numeric($this->settings['klaro']['privacyPolicy'])) {
             $privacyPage = $this->uriBuilder
                 ->reset()
-                ->setTargetPageUid((int) $this->settings['klaro']['privacyPolicy'])
-                ->setCreateAbsoluteUri(true)
+                ->setTargetPageUid((int)$this->settings['klaro']['privacyPolicy'])
                 ->build();
         } else {
             $privacyPage = $this->settings['klaro']['privacyPolicy'];
@@ -131,8 +131,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         if (is_numeric($this->settings['klaro']['poweredBy'])) {
             $poweredByPage = $this->uriBuilder
                 ->reset()
-                ->setTargetPageUid((int) $this->settings['klaro']['poweredBy'])
-                ->setCreateAbsoluteUri(true)
+                ->setTargetPageUid((int)$this->settings['klaro']['poweredBy'])
                 ->build();
         } else {
             $poweredByPage = $this->settings['klaro']['poweredBy'];
@@ -154,6 +153,7 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'hideLearnMore' => $this->settings['klaro']['hideLearnMore'] === '1',
             'htmlTexts' => true,
             'poweredBy' => $poweredByPage,
+            'lang' => $languageCode,
             'translations' => [
                 $languageCode => [
                     'privacyPolicyUrl' => $privacyPage,
@@ -178,14 +178,54 @@ class ConsentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     'activateAlways' => LocalizationUtility::translate('klaro.activateAlways', 'we_cookie_consent')
                 ]
             ],
-            'services' => []
         ];
 
+        /** @var Service $service */
         foreach ($services as $service) {
-            foreach ($service->getCategories() as $category) {
-                $klaroConfig['translations'][$languageCode]['purposes'][strtolower($category->getTitle())] = $category->getTitle();
+            $purposes = [];
+            /** @var Category $purpose */
+            foreach ($service->getCategories() as $purpose) {
+                $purposes[] = strtolower($purpose->getTitle());
+                $klaroConfig['translations'][$languageCode]['purposes'][strtolower($purpose->getTitle())] = $purpose->getTitle();
             }
+
+            $cookies = [];
+            /** @var Cookie $cookie */
+            foreach ($service->getCookies() as $cookie) {
+                $cookies[] = [$cookie->getTitle(), '/', ''];
+            }
+
+            $serviceConfig = [
+                'name' => $service->getProvider() . '-' . $service->getUid(),
+                'title' => $service->getTitle(),
+                'description' => $service->getDescription(),
+                'default' => $service->isRequired() || $service->isPreselected(),
+                'gtm' => $service->getGtmTriggerName(),
+                'variable' => $service->getGtmVariableName(),
+                'defaultIfNoConsent' => $service->isState(),
+                'required' => $service->isRequired(),
+                'optOut' => $service->isOptOut(),
+                'purposes' => $purposes,
+                'cookies' => $cookies,
+                'optInText' => $service->getOptInText()
+            ];
+
+            if (strpos($service->getProvider(), 'google-tagmanager-service') !== false) {
+                $serviceConfig['callback'] = "#!!ConsentApp.gtmServiceChanged!!#";
+            }
+
+            if ($service->getCallback()) {
+                $serviceConfig['callback'] = "#!!" . $service->getCallback() . "!!#";
+            }
+
+            $klaroConfig['services'][] = $serviceConfig;
         }
+
+        $klaroConfig = json_encode($klaroConfig);
+
+        // Workaround to add JS callback functions to JSON
+        $klaroConfig = str_replace('"#!!', '', $klaroConfig);
+        $klaroConfig = str_replace('!!#"', '', $klaroConfig);
 
         return $klaroConfig;
     }

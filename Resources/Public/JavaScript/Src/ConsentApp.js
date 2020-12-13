@@ -8,21 +8,12 @@ const ConsentApp = new function () {
      * @param consent
      * @param service
      */
-    this.consentChanged = function (consent, service) {
-        if (consent === true) {
-            if (service.name.indexOf('google-tagmanager-service') !== -1) {
-                window.dataLayer.push({
-                    event: service.gtm.trigger,
-                    [service.gtm.variable]: true
-                });
-            }
-        }
-
-        //Check if the own callback function is allready defined
-        if (typeof window[service.ownCallback] === "function") {
-            window[service.ownCallback](consent, service);
-        } else if (service.ownCallback !== '') {
-            console.error('The Callback function ' + service.ownCallback + ' is not yet defined. Please create it first.');
+    this.gtmServiceChanged = function (consent, service) {
+        if (consent) {
+            window.dataLayer.push({
+                event: service.gtm.trigger,
+                [service.gtm.variable]: true
+            });
         }
     };
 
@@ -36,6 +27,11 @@ const ConsentApp = new function () {
      */
     this.checkConsentOptIn = function (consent, service, $element, $parentElement) {
         if (!consent && $element.length) {
+            let hasOptIn = $parentElement.find('.service-opt-in').length > 0;
+            if (hasOptIn) {
+                return;
+            }
+
             $element.hide();
             $parentElement.prepend(this.createConsentOptInContainer(service));
 

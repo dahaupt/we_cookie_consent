@@ -1,7 +1,81 @@
-//File renamed to .ts extension for TYPO3 7 support, if support is dropped change back to .typoscript file ending
+plugin.tx_wecookieconsent_pi1 {
+    view {
+        templateRootPaths {
+            0 = EXT:we_cookie_consent/Resources/Private/Templates/
+            10 = {$plugin.tx_wecookieconsent_pi1.view.templateRootPath}
+        }
 
-//TYPO3 9 Syntax
-//@import 'EXT:we_cookie_consent/Configuration/TypoScript/setup.ts'
+        partialRootPaths {
+            0 = EXT:we_cookie_consent/Resources/Private/Partials/
+            10 = {$plugin.tx_wecookieconsent_pi1.view.partialRootPath}
+        }
 
-//TYPO3 8 Syntax
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:we_cookie_consent/Configuration/TypoScript/setup.ts">
+        layoutRootPaths {
+            0 = EXT:we_cookie_consent/Resources/Private/Layouts/
+            10 = {$plugin.tx_wecookieconsent_pi1.view.layoutRootPath}
+        }
+    }
+
+    persistence {
+        storagePid = {$plugin.tx_wecookieconsent_pi1.persistence.storagePid}
+    }
+
+    features {
+        skipDefaultArguments = 1
+        ignoreAllEnableFieldsInBe = 0
+        requireCHashArgumentForActionArguments = 1
+    }
+
+    mvc {
+        callDefaultActionIfActionCantBeResolved = 1
+    }
+
+    settings {
+        klaro {
+            elementID = {$plugin.tx_wecookieconsent_pi1.settings.klaro.elementID}
+            storageMethod = {$plugin.tx_wecookieconsent_pi1.settings.klaro.storageMethod}
+            cookieName = {$plugin.tx_wecookieconsent_pi1.settings.klaro.cookieName}
+            cookieExpiresAfterDays = {$plugin.tx_wecookieconsent_pi1.settings.klaro.cookieExpiresAfterDays}
+            privacyPolicy = {$plugin.tx_wecookieconsent_pi1.settings.klaro.privacyPolicy}
+            default = {$plugin.tx_wecookieconsent_pi1.settings.klaro.default}
+            mustConsent = {$plugin.tx_wecookieconsent_pi1.settings.klaro.mustConsent}
+            hideDeclineAll = {$plugin.tx_wecookieconsent_pi1.settings.klaro.hideDeclineAll}
+            hideLearnMore = {$plugin.tx_wecookieconsent_pi1.settings.klaro.hideLearnMore}
+            poweredBy = {$plugin.tx_wecookieconsent_pi1.settings.klaro.poweredBy}
+            groupByPurpose = {$plugin.tx_wecookieconsent_pi1.settings.klaro.groupByPurpose}
+            noticeAsModal = {$plugin.tx_wecookieconsent_pi1.settings.klaro.noticeAsModal}
+            stylePrefix = {$plugin.tx_wecookieconsent_pi1.settings.klaro.stylePrefix}
+        }
+    }
+}
+
+module.tx_wecookieconsent_web_wecookieconsentmod1 {
+    persistence {
+        storagePid = {$module.tx_wecookieconsent_mod1.persistence.storagePid}
+    }
+}
+
+page {
+    # Include Cookie Consent on every page
+    525304800 < tt_content.list.20.wecookieconsent_pi1
+
+    includeCSS {
+        klaro = EXT:we_cookie_consent/Resources/Public/Library/klaro/css/klaro.min.css
+        we_cookie_consent_style = EXT:we_cookie_consent/Resources/Public/Css/style.min.css
+    }
+
+    includeJSFooterlibs {
+        consentApp = EXT:we_cookie_consent/Resources/Public/JavaScript/Dist/ConsentApp.js
+    }
+}
+
+# Disable mustConsent feature on the privacy page, else the privacy policy can't be read.
+[page["uid"] == {$plugin.tx_wecookieconsent_pi1.settings.klaro.privacyPolicy}]
+	plugin.tx_wecookieconsent_pi1 {
+		settings {
+			klaro {
+				mustConsent = 0
+			}
+		}
+	}
+[GLOBAL]
