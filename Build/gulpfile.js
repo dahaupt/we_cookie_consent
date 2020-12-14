@@ -27,7 +27,9 @@ gulp.task('klaro-scss', () => {
 });
 
 gulp.task('extension-scss', () => {
-    return gulp.src('../Resources/Public/Scss/style.scss')
+    return gulp.src([
+        '../Resources/Public/Scss/style.scss',
+        '../Resources/Public/Scss/list.scss'])
         .pipe(sass({outputStyle: 'expanded'}))
         .pipe(gulp.dest('../Resources/Public/Css'))
         .pipe(sourcemaps.init())

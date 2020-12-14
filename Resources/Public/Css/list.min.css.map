@@ -1,0 +1,1 @@
+{"version":3,"sources":["list.css"],"names":[],"mappings":"AAAA,0FACE,gBACF,CAEA,kCACE,QACF","file":"list.min.css","sourcesContent":[".tx-we-cookie-consent .table th:last-of-type, .tx-we-cookie-consent .table td:last-of-type {\n  text-align: right;\n}\n\n.tx-we-cookie-consent .table td p {\n  margin: 0;\n}\n"]}

@@ -1,0 +1,15 @@
+.tx-we-cookie-consent {
+  .table {
+    th, td {
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+
+    td {
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

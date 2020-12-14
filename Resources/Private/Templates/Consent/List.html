@@ -2,11 +2,10 @@
 <f:section name="content">
     <f:for each="{services}" as="service">
         <f:if condition="{service.cookies}">
-            <span class="service__headline">{service.title}</span>
+            <strong>{service.title}</strong>
             <f:format.html>{service.description}</f:format.html>
 
             <table class="table table-bordered table-striped">
-                <caption>Cookies</caption>
                 <thead>
                     <tr>
                         <th scope="col"><f:translate key="list.table.title" /></th>
@@ -23,4 +22,8 @@
     <button type="button" class="btn btn-primary" onclick="return klaro.show();">
         <f:translate key="list.button.openConsent" />
     </button>
+</f:section>
+
+<f:section name="HeaderAssets">
+    <link href="{f:uri.resource(path: 'Css/list.min.css')}" rel="stylesheet"/>
 </f:section>
